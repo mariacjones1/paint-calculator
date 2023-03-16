@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int costBracket = 0;
+//        int costBracket = 0;
         double cost = 0;
         double costPerSquareMetre = 0;
         Scanner wallLength = new Scanner(System.in);
@@ -29,18 +29,11 @@ public class Main {
             System.out.println("Invalid paint colour.");
         }
 
-        if (wallArea < 50) {
-            costBracket = 1;
-        } else if (wallArea < 100) {
-            costBracket = 2;
-        }
+        int costBracket = wallArea < 50 ? 1 : 2;
 
         switch(costBracket) {
             case 1:
                 cost = 125;
-                break;
-            case 2:
-                cost = 250;
                 break;
             default:
                 cost = costPerSquareMetre * wallArea;
