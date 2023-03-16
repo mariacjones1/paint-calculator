@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        int costBracket = 0;
         double cost = 0;
         double costPerSquareMetre = 0;
         Scanner wallLength = new Scanner(System.in);
         Scanner wallHeight = new Scanner(System.in);
         Scanner paintColour = new Scanner(System.in);
+
         System.out.println("Enter the total wall length:");
         double inputLength = wallLength.nextDouble();
         System.out.println("Enter the total wall height:");
@@ -19,25 +19,19 @@ public class Main {
         System.out.println("Enter the paint colour (blue, pink or yellow):");
         String paint = paintColour.nextLine().toLowerCase();
 
-        if (paint.equals("blue")) {
-            costPerSquareMetre = 1.5;
-        } else if (paint.equals("pink")) {
-            costPerSquareMetre = 2;
-        } else if (paint.equals("yellow")) {
-            costPerSquareMetre = 2.5;
-        } else {
-            System.out.println("Invalid paint colour.");
+        switch (paint) {
+            case "blue" -> costPerSquareMetre = 1.5;
+            case "pink" -> costPerSquareMetre = 2;
+            case "yellow" -> costPerSquareMetre = 2.5;
+            default -> System.out.println("Invalid paint colour.");
         }
 
         int costBracket = wallArea < 50 ? 1 : 2;
 
-        switch(costBracket) {
-            case 1:
-                cost = 125;
-                break;
-            default:
-                cost = costPerSquareMetre * wallArea;
-                break;
+        if (costBracket == 1) {
+            cost = 125;
+        } else {
+            cost = costPerSquareMetre * wallArea;
         }
 
         System.out.println("Total cost: £" + cost);
