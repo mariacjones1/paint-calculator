@@ -33,9 +33,9 @@ public class Main {
         int costBracket;
         if (wallArea < 50) {
             costBracket = 1;
-            if (room == "kitchen") {
+            if (room.equals("kitchen")) {
                 cost = 100;
-            } else if (room == "bathroom") {
+            } else if (room.equals("bathroom")) {
                 cost = 125;
             } else {
                 cost = 75;
