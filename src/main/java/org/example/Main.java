@@ -6,6 +6,33 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        boolean moreRoomsToPaint = true;
+        Scanner moreRooms = new Scanner(System.in);
+        float totalCost = 0;
+
+        do {
+            totalCost = totalCost + costOfRoom();
+            System.out.println("Do you have more rooms to paint? Y/N");
+            String more = moreRooms.nextLine().toUpperCase();
+            boolean validAnswer = false;
+            do {
+                if (more.equals("Y")) {
+                    moreRoomsToPaint = true;
+                    validAnswer = true;
+                } else if (more.equals("N")) {
+                    moreRoomsToPaint = false;
+                    validAnswer = true;
+                } else {
+                    System.out.println("Invalid answer; please type 'Y' or 'N'.");
+                    validAnswer = false;
+                }
+            } while (validAnswer == false);
+        } while (moreRoomsToPaint == true);
+
+        System.out.println("Total cost to paint all rooms: £" + totalCost);
+    }
+
+    public static float costOfRoom() {
         float cost;
         float costPerSquareMetre = 0;
         Scanner roomLength = new Scanner(System.in);
@@ -55,7 +82,7 @@ public class Main {
                 System.out.println("Invalid answer; please type 'Y' or 'N'.");
             }
         } while (ceilingArea == -1);
-        float wallArea = ((inputLength * 2) + (inputHeight * 2)) * inputHeight + ceilingArea - windowsAndDoors;
+        float wallArea = ((inputLength * 2) + (inputWidth * 2)) * inputHeight + ceilingArea - windowsAndDoors;
         System.out.println("Wall area: " + wallArea + "m2");
 
         String room;
@@ -95,5 +122,7 @@ public class Main {
 
         String explanation = costBracket == 1 ? "(Minimum price)" : "(Calculated price)";
         System.out.println("Total cost to paint your " + roomToPaint + " " + colour + ": £" + cost + "\n" + explanation);
+
+        return cost;
     }
 }
