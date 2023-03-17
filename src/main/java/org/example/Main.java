@@ -66,7 +66,7 @@ public class Main {
             }
         } else {
             costBracket = 2;
-            cost = wallArea + costPerSquareMetre;
+            cost = wallArea * costPerSquareMetre;
         }
 
         String explanation = costBracket == 1 ? "(Minimum price)" : "(Calculated price)";
