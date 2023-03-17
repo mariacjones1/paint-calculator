@@ -17,9 +17,10 @@ public class Main {
         float wallArea = inputLength * inputHeight;
         System.out.println("Wall area: " + wallArea + "m2");
 
+        String room;
         do {
             System.out.println("Enter the room to be painted (kitchen, bathroom or other):");
-            String room = roomType.nextLine().toLowerCase();
+            room = roomType.nextLine().toLowerCase();
 
             switch (room) {
                 case "kitchen" -> costPerSquareMetre = 2f;
@@ -29,18 +30,22 @@ public class Main {
             }
         } while (costPerSquareMetre == 0);
 
-
-        int costBracket = wallArea < 50 ? 1 : 2;
-
-        if (costBracket == 1) {
-            cost = 125;
+        int costBracket;
+        if (wallArea < 50) {
+            costBracket = 1;
+            if (room == "kitchen") {
+                cost = 100;
+            } else if (room == "bathroom") {
+                cost = 125;
+            } else {
+                cost = 75;
+            }
         } else {
-            cost = costPerSquareMetre * wallArea;
+            costBracket = 2;
+            cost = wallArea + costPerSquareMetre;
         }
 
-        System.out.println("Total cost: £" + cost);
-        if (cost == 125) {
-            System.out.println("(Minimum price)");
-        }
+        String explanation = costBracket == 1 ? "(Minimum price)" : "(Calculated price)";
+        System.out.println("Total cost: £" + cost + "\n" + explanation);
     }
 }
