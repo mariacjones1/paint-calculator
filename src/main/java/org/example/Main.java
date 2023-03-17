@@ -55,14 +55,14 @@ public class Main {
         } while (costPerSquareMetre == 0);
 
         int costBracket;
-        if (wallArea < 50) {
+        if (wallArea < 100) {
             costBracket = 1;
             if (room.equals("kitchen")) {
-                cost = 100;
+                cost = 200;
             } else if (room.equals("bathroom")) {
-                cost = 125;
+                cost = 250;
             } else {
-                cost = 75;
+                cost = 150;
             }
         } else {
             costBracket = 2;
