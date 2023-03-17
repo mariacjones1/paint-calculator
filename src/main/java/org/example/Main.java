@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +11,28 @@ public class Main {
         Scanner wallLength = new Scanner(System.in);
         Scanner wallHeight = new Scanner(System.in);
         Scanner roomType = new Scanner(System.in);
+
+        List<String> paintColours = new ArrayList<>();
+        paintColours.add("pink");
+        paintColours.add("blue");
+        paintColours.add("yellow");
+        paintColours.add("green");
+
+        Scanner chosenPaintColour = new Scanner(System.in);
+        System.out.println("Please choose your paint colour from the following selection:");
+        for (int i = 0; i < paintColours.size(); i++) {
+            System.out.println("Paint #" + (i+1) + ": " + paintColours.get(i));
+        }
+        String colour;
+        do {
+            colour = chosenPaintColour.nextLine();
+            if (paintColours.contains(colour)) {
+                System.out.println("You have chosen " + colour + "! Great choice.");
+            } else {
+                colour = "none";
+                System.out.println("Colour not available, please choose another colour.");
+            }
+        } while (colour.equals("none"));
 
         System.out.println("Enter the total wall length:");
         float inputLength = wallLength.nextFloat();
