@@ -39,5 +39,8 @@ public class Main {
         }
 
         System.out.println("Total cost: £" + cost);
+        if (cost == 125) {
+            System.out.println("(Minimum price)");
+        }
     }
 }
