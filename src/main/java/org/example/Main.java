@@ -8,8 +8,11 @@ public class Main {
     public static void main(String[] args) {
         float cost;
         float costPerSquareMetre = 0;
-        Scanner wallLength = new Scanner(System.in);
-        Scanner wallHeight = new Scanner(System.in);
+        Scanner roomLength = new Scanner(System.in);
+        Scanner roomWidth = new Scanner(System.in);
+        Scanner roomHeight = new Scanner(System.in);
+        Scanner removeArea = new Scanner(System.in);
+        Scanner ceiling = new Scanner(System.in);
         Scanner roomType = new Scanner(System.in);
 
         List<String> paintColours = new ArrayList<>();
@@ -32,11 +35,27 @@ public class Main {
             multiplier = 1.5f;
         }
 
-        System.out.println("Enter the total wall length:");
-        float inputLength = wallLength.nextFloat();
-        System.out.println("Enter the total wall height:");
-        float inputHeight = wallHeight.nextFloat();
-        float wallArea = inputLength * inputHeight;
+        System.out.println("Enter the room length:");
+        float inputLength = roomLength.nextFloat();
+        System.out.println("Enter the room width:");
+        float inputWidth = roomWidth.nextFloat();
+        System.out.println("Enter the room height:");
+        float inputHeight = roomHeight.nextFloat();
+        System.out.println("Please enter the total area of the windows and doors:");
+        float windowsAndDoors = removeArea.nextFloat();
+        System.out.println("Do you want to paint the ceiling? Y/N");
+        String inputCeiling = ceiling.nextLine().toUpperCase();
+        float ceilingArea = -1;
+        do {
+            if (inputCeiling.equals("Y")) {
+                ceilingArea = inputLength * inputWidth;
+            } else if (inputCeiling.equals("N")) {
+                ceilingArea = 0;
+            } else {
+                System.out.println("Invalid answer; please type 'Y' or 'N'.");
+            }
+        } while (ceilingArea == -1);
+        float wallArea = ((inputLength * 2) + (inputHeight * 2)) * inputHeight + ceilingArea - windowsAndDoors;
         System.out.println("Wall area: " + wallArea + "m2");
 
         String room;
