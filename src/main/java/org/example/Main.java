@@ -8,7 +8,7 @@ public class Main {
         double costPerSquareMetre = 0;
         Scanner wallLength = new Scanner(System.in);
         Scanner wallHeight = new Scanner(System.in);
-        Scanner paintColour = new Scanner(System.in);
+        Scanner roomType = new Scanner(System.in);
 
         System.out.println("Enter the total wall length:");
         double inputLength = wallLength.nextDouble();
@@ -18,14 +18,14 @@ public class Main {
         System.out.println("Wall area: " + wallArea + "m2");
 
         do {
-            System.out.println("Enter the paint colour (blue, pink or yellow):");
-            String paint = paintColour.nextLine().toLowerCase();
+            System.out.println("Enter the room to be painted (kitchen, bathroom or other):");
+            String room = roomType.nextLine().toLowerCase();
 
-            switch (paint) {
-                case "blue" -> costPerSquareMetre = 1.5;
-                case "pink" -> costPerSquareMetre = 2;
-                case "yellow" -> costPerSquareMetre = 2.5;
-                default -> System.out.println("Invalid paint colour, please try again.");
+            switch (room) {
+                case "kitchen" -> costPerSquareMetre = 2;
+                case "bathroom" -> costPerSquareMetre = 2.5;
+                case "other" -> costPerSquareMetre = 1.5;
+                default -> System.out.println("Invalid room, please try again.");
             }
         } while (costPerSquareMetre == 0);
 
