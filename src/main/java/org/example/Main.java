@@ -19,20 +19,18 @@ public class Main {
         paintColours.add("green");
 
         Scanner chosenPaintColour = new Scanner(System.in);
-        System.out.println("Please choose your paint colour from the following selection:");
+        System.out.println("Please choose your paint colour from the following selection, or choose your own colour for 50% more:");
         for (int i = 0; i < paintColours.size(); i++) {
             System.out.println("Paint #" + (i+1) + ": " + paintColours.get(i));
         }
         String colour;
-        do {
-            colour = chosenPaintColour.nextLine();
-            if (paintColours.contains(colour)) {
-                System.out.println("You have chosen " + colour + "! Great choice.");
-            } else {
-                colour = "none";
-                System.out.println("Colour not available, please choose another colour.");
-            }
-        } while (colour.equals("none"));
+        float multiplier;
+        colour = chosenPaintColour.nextLine();
+        if (paintColours.contains(colour)) {
+            multiplier = 1;
+        } else {
+            multiplier = 1.5f;
+        }
 
         System.out.println("Enter the total wall length:");
         float inputLength = wallLength.nextFloat();
@@ -54,22 +52,29 @@ public class Main {
             }
         } while (costPerSquareMetre == 0);
 
+        String roomToPaint;
+        if (room.equals("other")) {
+            roomToPaint = "room";
+        } else {
+            roomToPaint = room;
+        }
+
         int costBracket;
         if (wallArea < 100) {
             costBracket = 1;
             if (room.equals("kitchen")) {
-                cost = 200;
+                cost = 200 * multiplier;
             } else if (room.equals("bathroom")) {
-                cost = 250;
+                cost = 250 * multiplier;
             } else {
-                cost = 150;
+                cost = 150 * multiplier;
             }
         } else {
             costBracket = 2;
-            cost = wallArea * costPerSquareMetre;
+            cost = wallArea * costPerSquareMetre * multiplier;
         }
 
         String explanation = costBracket == 1 ? "(Minimum price)" : "(Calculated price)";
-        System.out.println("Total cost: £" + cost + "\n" + explanation);
+        System.out.println("Total cost to paint your " + roomToPaint + " " + colour + ": £" + cost + "\n" + explanation);
     }
 }
