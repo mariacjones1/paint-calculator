@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        double cost;
-        double costPerSquareMetre = 0;
+        float cost;
+        float costPerSquareMetre = 0;
         Scanner wallLength = new Scanner(System.in);
         Scanner wallHeight = new Scanner(System.in);
         Scanner roomType = new Scanner(System.in);
 
         System.out.println("Enter the total wall length:");
-        double inputLength = wallLength.nextDouble();
+        float inputLength = wallLength.nextFloat();
         System.out.println("Enter the total wall height:");
-        double inputHeight = wallHeight.nextDouble();
-        double wallArea = inputLength * inputHeight;
+        float inputHeight = wallHeight.nextFloat();
+        float wallArea = inputLength * inputHeight;
         System.out.println("Wall area: " + wallArea + "m2");
 
         do {
@@ -22,9 +22,9 @@ public class Main {
             String room = roomType.nextLine().toLowerCase();
 
             switch (room) {
-                case "kitchen" -> costPerSquareMetre = 2;
-                case "bathroom" -> costPerSquareMetre = 2.5;
-                case "other" -> costPerSquareMetre = 1.5;
+                case "kitchen" -> costPerSquareMetre = 2f;
+                case "bathroom" -> costPerSquareMetre = 2.5f;
+                case "other" -> costPerSquareMetre = 1.5f;
                 default -> System.out.println("Invalid room, please try again.");
             }
         } while (costPerSquareMetre == 0);
