@@ -17,17 +17,15 @@ public class Main {
             boolean validAnswer = false;
             do {
                 if (more.equals("Y")) {
-                    moreRoomsToPaint = true;
                     validAnswer = true;
                 } else if (more.equals("N")) {
                     moreRoomsToPaint = false;
                     validAnswer = true;
                 } else {
                     System.out.println("Invalid answer; please type 'Y' or 'N'.");
-                    validAnswer = false;
                 }
-            } while (validAnswer == false);
-        } while (moreRoomsToPaint == true);
+            } while (!validAnswer);
+        } while (moreRoomsToPaint);
 
         System.out.println("Total cost to paint all rooms: £" + totalCost);
     }
